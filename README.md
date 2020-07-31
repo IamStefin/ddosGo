@@ -11,7 +11,10 @@ $ go get github.com/iamstefin/ddosgo
 # Usage
 
 ```console
-$ ddosgo <url>
+$ ddosgo --help
+Usage of ddosgo:
+  -url string
+    	The target URL
 ```
 
 # Notes
