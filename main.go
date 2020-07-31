@@ -1,13 +1,18 @@
 package main
 
 import (
-  "os"
+  "flag"
 
-  "github.com/iamstefin/ddosgo/cmd"
+  "github.com/iamstefin/ddosgo/ddosgo"
 )
+
+var Usage string = `
+ddosgo
+`
 
 func main()  {
   ddosgo.SetupCloseHandler()
-  url := os.Args[1]
-  ddosgo.Dodos(url)
+  url := flag.String("url", "", "The target URL")
+  flag.Parse()
+  ddosgo.Dodos(*url)
 }
