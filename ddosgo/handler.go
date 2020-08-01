@@ -16,13 +16,13 @@ func SetupCloseHandler() {
     fmt.Println("\r- Total Requests: ",*Totalrequest)
     fmt.Println("\r- Total Response: ",*Totalresponse)
     fmt.Println("\r- Total Bounced: ",*Totalbounced)
-    fmt.Println("\r- Error Response Distribution")
+    fmt.Println("\r- Error Distribution")
     for a,b := range(Errors){
       fmt.Printf("\r    - %v ---- %v\n",a,b)
     }
     fmt.Printf("\r- Response Distribution\n")
     for c,d := range(Responses){
-      fmt.Printf("\r- %v ---- %v\n",c,d)
+      fmt.Printf("\r    - %v ---- %v\n",c,d)
     }
 		os.Exit(0)
 	}()
