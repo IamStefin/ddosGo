@@ -29,6 +29,12 @@ func setResponse(key int)  {
   Responses[key]+=1
 }
 
+func incrCounter(num *int)  {
+  rwm.Lock()
+  defer rwm.Unlock()
+  *num+=1
+}
+
 func Dodos(url string)  {
   Errors = make(map[string]int)
   Responses = make(map[int]int)
@@ -38,13 +44,13 @@ func Dodos(url string)  {
   for {
     go func ()  {
       wg.Add(1)
-      *Totalrequest += 1
+      incrCounter(Totalrequest)
       resp, err := http.Get(url)
       if err != nil {
-        *Totalbounced += 1
+        incrCounter(Totalbounced)
         setError(string(err.Error()))
       }else{
-        *Totalresponse += 1
+        incrCounter(Totalresponse)
         setResponse(resp.StatusCode)
       }
       wg.Done()
