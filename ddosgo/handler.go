@@ -12,10 +12,10 @@ func SetupCloseHandler() {
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		<-c
-		fmt.Println("\r- ddosGo REPORT for ",URL)
-    fmt.Println("\r- Total Requests: ",Totalrequest)
-    fmt.Println("\r- Total Response: ",Totalresponse)
-    fmt.Println("\r- Total Bounced: ",Totalbounced)
+		fmt.Println("\r- ddosGo REPORT for ",*URL)
+    fmt.Println("\r- Total Requests: ",*Totalrequest)
+    fmt.Println("\r- Total Response: ",*Totalresponse)
+    fmt.Println("\r- Total Bounced: ",*Totalbounced)
 		os.Exit(0)
 	}()
 }

