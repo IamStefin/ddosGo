@@ -11,7 +11,8 @@ ddosgo
 
 func main()  {
   ddosgo.SetupCloseHandler()
-  url := flag.String("url", "", "The target URL")
+  url := flag.String("url", "", "The Target URL")
+  no := flag.Int("n",200,"Maximum number of concurrent requests")
   flag.Parse()
-  ddosgo.Dodos(*url)
+  ddosgo.Dodos(*url,*no)
 }

@@ -5,6 +5,8 @@ import (
   "log"
   "time"
   "sync"
+
+  "runtime"
 )
 
 var (
@@ -35,27 +37,30 @@ func incrCounter(num *int)  {
   *num+=1
 }
 
-func Dodos(url string)  {
+func Dodos(url string,nuo int)  {
   Errors = make(map[string]int)
   Responses = make(map[int]int)
   *URL = url
   var wg sync.WaitGroup
   log.Print("Attack Started!!")
   for {
-    go func ()  {
-      wg.Add(1)
-      incrCounter(Totalrequest)
-      resp, err := http.Get(url)
-      if err != nil {
-        incrCounter(Totalbounced)
-        setError(string(err.Error()))
-      }else{
-        incrCounter(Totalresponse)
-        setResponse(resp.StatusCode)
-      }
-      wg.Done()
-    }()
-    time.Sleep(10*time.Millisecond)
+    if(runtime.NumGoroutine()>nuo){
+    }else{
+      go func ()  {
+        wg.Add(1)
+        incrCounter(Totalrequest)
+        resp, err := http.Get(url)
+        if err != nil {
+          incrCounter(Totalbounced)
+          setError(string(err.Error()))
+        }else{
+          incrCounter(Totalresponse)
+          setResponse(resp.StatusCode)
+        }
+        wg.Done()
+      }()
+      time.Sleep(10*time.Millisecond)
+    }
   }
   wg.Wait()
 }
