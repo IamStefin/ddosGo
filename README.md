@@ -10,11 +10,13 @@ $ go get github.com/iamstefin/ddosgo
 
 # Usage
 
-```console
+```
 $ ddosgo --help
 Usage of ddosgo:
+  -n int
+    	Maximum number of concurrent requests (default 200)
   -url string
-    	The target URL
+    	The Target URL
 ```
 
 # Notes
