@@ -14,5 +14,9 @@ func main()  {
   url := flag.String("url", "", "The Target URL")
   no := flag.Int("n",200,"Maximum number of concurrent requests")
   flag.Parse()
-  ddosgo.Dodos(*url,*no)
+  if (*url!=""){
+    ddosgo.Dodos(*url,*no)
+  }else{
+    flag.Usage()
+  }
 }
